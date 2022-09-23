@@ -6,5 +6,16 @@ export default createStore({
     state: {
         titles: Titles,
         filters: Filters,
+        toasts: []
+    },
+
+    mutations: {
+        setToast(state, toast) {
+            state.toasts.push(toast);
+
+            setTimeout(() => {
+                state.toasts.shift();
+            }, 1000)
+        },
     }
 });

@@ -3,7 +3,7 @@ export const parseComponents = text => {
 
     if (placeholder.test(text)) {
         return text.split(placeholder).map(value => {
-            if (/\[\d+ \d+\|.*?]/g.test(value)) {
+            if (/\[\d+ \d+ \([0-9.]+\)\|.*?]/g.test(value)) {
                 return {name: 'CopyCoordinates', value};
             } else if (/\[#\d+\|.*?]/g.test(value)) {
                 return {name: 'OpenLink', value};

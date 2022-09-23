@@ -1,11 +1,11 @@
 <template>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a
+    <router-link
         class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6"
-        href="#"
+        to="/"
     >
-      Company name
-    </a>
+      База титулов Perfect World - Тайны солнца и луны [{{ titles.length }}]
+    </router-link>
 
     <button
         class="navbar-toggler position-absolute d-md-none collapsed"
@@ -25,9 +25,11 @@
       <nav
           id="sidebarMenu"
           class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+          style="padding-top: 150px"
       >
         <filter-list
             v-model="filter"
+            style="margin-top: -100px"
         ></filter-list>
 
         <title-list
@@ -38,6 +40,17 @@
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <router-view></router-view>
       </main>
+
+      <div class="toast-container position-absolute p-3 bottom-0 end-0">
+        <div class="toast show"
+             v-for="(toast, index) in toasts"
+             :key="`${toast.id}-${index}`"
+        >
+          <div class="toast-body">
+            {{ toast.value }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +73,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['titles']),
+    ...mapState(['titles', 'toasts']),
 
     list() {
       const titles = orderBy(this.titles, 'order', 'asc');

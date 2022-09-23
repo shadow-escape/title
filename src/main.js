@@ -4,10 +4,36 @@ import router from './router';
 import store from './store';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCopy, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import {
+    faArrowUpRightFromSquare,
+    faStarOfLife,
+    faLocationPin,
+    faDungeon,
+    faCalendarDays,
+    faStar,
+    faLayerGroup,
+    faTrophy,
+    faQuestion,
+    faUserTie,
+    faListCheck,
+    faCopy
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faCopy, faArrowUpRightFromSquare);
+library.add(
+    faArrowUpRightFromSquare,
+    faStarOfLife,
+    faLocationPin,
+    faDungeon,
+    faCalendarDays,
+    faStar,
+    faLayerGroup,
+    faTrophy,
+    faQuestion,
+    faUserTie,
+    faListCheck,
+    faCopy,
+);
 
 import './assets/styles/style.scss';
 

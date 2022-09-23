@@ -7,14 +7,18 @@
           class="col my-1"
       >
         <button
-            class="title-filter__button btn btn-sm w-100 p-1"
+            :title="item.name"
+            class="btn btn-sm w-100 p-1"
             :class="{
               'btn-dark': item.id === modelValue,
               'btn-outline-dark': item.id !== modelValue,
             }"
             @click="setFilter(item.id)"
         >
-          {{ item.name }}
+          <font-awesome-icon
+              class="filter-icon"
+              :icon="item.icon"
+          ></font-awesome-icon>
         </button>
       </div>
     </div>
@@ -40,8 +44,13 @@ export default {
   methods: {
     setFilter(filter) {
       this.$emit('update:modelValue', filter)
-      //this.$store.commit('setFilter', filter);
     }
   }
 }
 </script>
+
+<style>
+.filter-icon {
+  font-size: 14px;
+}
+</style>
