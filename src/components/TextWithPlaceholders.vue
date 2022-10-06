@@ -12,6 +12,7 @@
 import {uniqueId} from 'lodash';
 import CopyCoordinates from './placeholders/CopyCoordinates.vue';
 import OpenLink from './placeholders/OpenLink.vue';
+import QuestLink from './placeholders/QuestLink.vue';
 import SimpleText from './placeholders/SimpleText.vue';
 
 export default {
@@ -19,6 +20,7 @@ export default {
   components: {
     CopyCoordinates,
     OpenLink,
+    QuestLink,
     SimpleText
   },
   props: {

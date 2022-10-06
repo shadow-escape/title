@@ -1,20 +1,29 @@
 <template>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <router-link
-        class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6"
-        to="/"
-    >
-      База титулов Perfect World - Тайны солнца и луны [{{ titles.length }}]
-    </router-link>
+    <search-title
+        class="d-none d-md-block"
+        v-model="search"
+    ></search-title>
+
+    <div class="navbar-brand d-flex me-0 px-3 fs-6 w-100 justify-content-between align-items-center">
+      <router-link
+          class="py-2"
+          to="/"
+      >
+        База титулов Perfect World
+      </router-link>
+
+      <span class="navbar-extra text-end d-none d-md-block">
+        Тайны солнца и луны <br>
+        Титулов: {{ titles.length }}
+      </span>
+    </div>
 
     <button
         class="navbar-toggler position-absolute d-md-none collapsed"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#sidebarMenu"
-        aria-controls="sidebarMenu"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        aria-label="Отобразить навигацию"
+        @click="sidebar = !sidebar"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,8 +32,8 @@
   <div class="container-fluid">
     <div class="row">
       <nav
-          id="sidebarMenu"
           class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+          :class="{'show': sidebar}"
           style="padding-top: 150px"
       >
         <filter-list
@@ -60,29 +69,40 @@ import {mapState} from 'vuex';
 import {orderBy} from 'lodash';
 import FilterList from './components/FilterList.vue';
 import TitleList from './components/TitleList.vue';
+import SearchTitle from './components/SearchTitle.vue'
 
 export default {
   name: 'App',
   components: {
     TitleList,
-    FilterList
+    FilterList,
+    SearchTitle
   },
   data() {
     return {
-      filter: 'all'
+      sidebar: false,
+      filter: 'all',
+      search: ''
     }
   },
   computed: {
     ...mapState(['titles', 'toasts']),
 
     list() {
-      const titles = orderBy(this.titles, 'order', 'asc');
+      const { titles, filter, search } = this;
+      let output = orderBy(titles, 'order', 'asc');
 
-      if (this.filter !== 'all') {
-        return titles.filter(title => title.category === this.filter);
+      if (filter !== 'all') {
+        output = output.filter(title => title.category === filter);
       }
 
-      return titles;
+      if (search.length) {
+        output = output.filter(({ name }) => name.toUpperCase().includes(
+            search.toUpperCase()
+        ));
+      }
+
+      return output;
     }
   }
 };

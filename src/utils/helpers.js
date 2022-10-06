@@ -7,6 +7,8 @@ export const parseComponents = text => {
                 return {name: 'CopyCoordinates', value};
             } else if (/\[#\d+\|.*?]/g.test(value)) {
                 return {name: 'OpenLink', value};
+            } else if (/\[\d+\|.*?]/g.test(value)) {
+                return {name: 'QuestLink', value};
             }
 
             return {name: 'SimpleText', value};

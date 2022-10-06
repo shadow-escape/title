@@ -16,7 +16,8 @@ import {
     faQuestion,
     faUserTie,
     faListCheck,
-    faCopy
+    faCopy,
+    faCircleXmark
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -33,6 +34,7 @@ library.add(
     faUserTie,
     faListCheck,
     faCopy,
+    faCircleXmark
 );
 
 import './assets/styles/style.scss';

@@ -51,8 +51,11 @@
       {{ title.description }}
     </p>
 
-    <p class="fs-6 text-break">
-      <strong>Координаты получения задания:</strong>
+    <p
+        v-if="title.accept"
+        class="fs-6 text-break"
+    >
+      <strong>Координаты вызова:</strong>
 
       <text-with-placeholders
           :components="transform(title.accept)"
@@ -102,7 +105,7 @@
 
 <script>
 import {mapState} from 'vuex';
-import {parseComponents} from '../utils/helpers';
+import {parseComponents} from '@/utils/helpers';
 import TextWithPlaceholders from '../components/TextWithPlaceholders.vue';
 import CharacteristicsRow from '../components/CharacteristicsRow.vue';
 import QuestLink from '@/components/placeholders/QuestLink.vue';
