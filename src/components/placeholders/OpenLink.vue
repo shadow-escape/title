@@ -54,7 +54,7 @@ export default {
 
     hasIcon() {
       return images.includes(this.id);
-    }
+    },
   }
 }
 </script>
